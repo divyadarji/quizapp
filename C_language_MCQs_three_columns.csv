@@ -1,0 +1,21 @@
+question,option,answer,category,subcategory
+Which of the following is the correct data type to store a character in C?,"A) char, B) int, C) float, D) double",A,PL,c-language
+What is the size of an int data type in C (on a 32-bit system)?,"A) 2 bytes, B) 4 bytes, C) 8 bytes, D) 1 byte",B,PL,c-language
+Which of the following functions is used to read a string in C?,"A) scanf(), B) printf(), C) gets(), D) puts()",C,PL,c-language
+"What will the following code print? printf(""%d"", 5+3);","A) 53, B) 8, C) Error, D) 0",B,PL,c-language
+Which header file is required for using printf() and scanf() functions?,"A) stdlib.h, B) conio.h, C) stdio.h, D) math.h",C,PL,c-language
+"What is the output of printf(""%d"", sizeof(char)); on most systems?","A) 1, B) 2, C) 4, D) 8",A,PL,c-language
+Which of the following is NOT a valid storage class in C?,"A) auto, B) register, C) static, D) mutable",D,PL,c-language
+Which operator is used to access the value of a variable through a pointer?,"A) &, B) *, C) ->, D) .",B,PL,c-language
+"What is the output of the following code? int a = 10; printf(""%d"", a++);","A) 11, B) 10, C) Undefined, D) Error",B,PL,c-language
+What is the value of x after executing x = 5 % 2?,"A) 1, B) 2, C) 0, D) 5",A,PL,c-language
+Which of the following is not a valid keyword in C?,"A) int, B) return, C) main, D) boolean",D,PL,c-language
+How do you declare a pointer to an integer in C?,"A) int ptr;, B) int *ptr;, C) int &ptr;, D) pointer int ptr;",B,PL,c-language
+Which function is used to dynamically allocate memory in C?,"A) malloc(), B) calloc(), C) Both A and B, D) alloc()",C,PL,c-language
+"What will be the output of this code: printf(""%d"", 10 / 3);","A) 3.33, B) 3, C) 4, D) Error",B,PL,c-language
+What is the index of the first element in an array in C?,"A) 0, B) 1, C) -1, D) Depends on the array",A,PL,c-language
+Which loop ensures at least one execution of its body?,"A) for, B) while, C) do-while, D) None of the above",C,PL,c-language
+What will happen if you try to access an array element out of bounds in C?,"A) Compiler error, B) Segmentation fault, C) Random value, D) Depends on the system",B,PL,c-language
+Which function is used to compare two strings in C?,"A) strcmp(), B) strcat(), C) strcpy(), D) strlen()",A,PL,c-language
+"What is the output of the following code? printf(""%c"", 'A' + 2);","A) A, B) C, C) B, D) Error",B,PL,c-language
+Which of the following is the correct syntax to declare an array of 5 integers?,"A) int arr[5];, B) int arr = [5];, C) int arr(5);, D) array int arr[5];",A,PL,c-language

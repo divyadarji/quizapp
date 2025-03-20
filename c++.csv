@@ -1,0 +1,21 @@
+﻿question,option,answer,category,subcategory
+What is the correct extension for C++ files?,".cpp, .c++, .cp, .cc",A,PL,c++
+Which of the following defines a block in C++?,"(), {}, [], <>",B,PL,c++
+Which keyword declares a class in C++?,"class, struct, object, define",A,PL,c++
+Which of these is not a valid variable name?,"var_name, _varname, 2varname, varName",C,PL,c++
+Output of 'cout << 2+3;'?,"5, 23, Error, 2+3",A,PL,c++
+Operator used for input in C++?,"<<, >>, ##, //",B,PL,c++
+What does 'new' keyword do?,"Deletes, Allocates, Creates, Defines",B,PL,c++
+What is a pointer in C++?,"Variable value, Function, Address, Object",C,PL,c++
+Which is not a C++ loop structure?,"for, while, do-while, foreach",D,PL,c++
+Size of int in C++?,"4 bytes, 2 bytes, 8 bytes, Platform dependent",D,PL,c++
+Function to find string length in C++?,"length(), size(), Both, None",C,PL,c++
+Used to declare constants in C++?,"const, define, constant, static",A,PL,c++
+Use of 'this' pointer?,"Current object, Parent class, New object, None",A,PL,c++
+Not a valid access specifier?,"private, public, protected, global",D,PL,c++
+Comment start in C++?,"//, /*, #, ;;",A,PL,c++
+STL stands for?,"Standard Template Library, Simple Template Library, Standard Testing Library, Simple Testing Library",A,PL,c++
+Not a data type in C++?,"float, int, real, bool",C,PL,c++
+Purpose of destructor?,"Initialize, Free resources, Copy object, Define class",B,PL,c++
+'cin' in C++ represents?,"Output stream, Input stream, File stream, Character input",B,PL,c++
+Used to end a statement in C++?,"., ,, ;, :",C,PL,c++

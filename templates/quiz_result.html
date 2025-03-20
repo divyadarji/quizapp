@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - Quiz Results{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card quiz-card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Quiz Results</h3>
+            </div>
+            <div class="card-body text-center">
+                <h4 class="mb-4">
+                    {% if category == 'gk' %}
+                        General Knowledge
+                    {% elif category == 'pl' %}
+                        Programming Languages - 
+                        {% if subcategory == 'c-language' %}
+                            C Language
+                        {% elif subcategory == 'c++' %}
+                            C++
+                        {% elif subcategory == 'java' %}
+                            Java
+                        {% elif subcategory == 'python' %}
+                            Python
+                        {% endif %}
+                    {% elif category == 'gl' %}
+                        General Languages - 
+                        {% if subcategory == 'eng' %}
+                            English
+                        {% elif subcategory == 'hindi' %}
+                            Hindi
+                        {% elif subcategory == 'guj' %}
+                            Gujarati
+                        {% endif %}
+                    {% endif %}
+                </h4>
+                
+                <div class="result-card" style="background-color: #f0f7ff;">
+                    <div class="row align-items-center">
+                        <div class="col-md-6 text-center">
+                            <div class="circular-progress" style="position: relative; width: 150px; height: 150px; margin: 0 auto;">
+                                <svg width="150" height="150" viewBox="0 0 150 150">
+                                    <circle cx="75" cy="75" r="65" fill="none" stroke="#e6e6e6" stroke-width="10"></circle>
+                                    <circle cx="75" cy="75" r="65" fill="none" stroke="#4caf50" stroke-width="10" 
+                                        stroke-dasharray="408.4" stroke-dashoffset="{{ 408.4 - (408.4 * correct / total) }}"
+                                        transform="rotate(-90 75 75)"></circle>
+                                </svg>
+                                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                                    <span class="result-score">{{ (correct / total * 100)|round|int }}%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="result-stats text-start">
+                                <p class="mb-2"><strong>Total Questions:</strong> {{ total }}</p>
+                                <p class="mb-2"><strong>Attempted:</strong> {{ attempted }}</p>
+                                <p class="mb-2"><strong>Correct Answers:</strong> {{ correct }}</p>
+                                <p class="mb-2"><strong>Wrong Answers:</strong> {{ attempted - correct }}</p>
+                                <p class="mb-2"><strong>Unattempted:</strong> {{ total - attempted }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feedback mt-4">
+                    {% if correct / total >= 0.8 %}
+                        <div class="alert alert-success">
+                            <h5><i class="bi bi-trophy"></i> Excellent!</h5>
+                            <p>Great job! You have an excellent grasp of this subject.</p>
+                        </div>
+                    {% elif correct / total >= 0.6 %}
+                        <div class="alert alert-info">
+                            <h5><i class="bi bi-award"></i> Good Work!</h5>
+                            <p>You did well! Keep practicing to improve further.</p>
+                        </div>
+                    {% elif correct / total >= 0.4 %}
+                        <div class="alert alert-warning">
+                            <h5><i class="bi bi-lightbulb"></i> Keep Learning!</h5>
+                            <p>You're on the right track. Study more to improve your score.</p>
+                        </div>
+                    {% else %}
+                        <div class="alert alert-danger">
+                            <h5><i class="bi bi-book"></i> Need Improvement</h5>
+                            <p>Don't worry! Review the topics and try again later.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="mt-4">
+                    <a href="{{ url_for('quiz_categories') }}" class="btn btn-primary me-2">Take Another Quiz</a>
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

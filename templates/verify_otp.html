@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - Verify OTP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card quiz-card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Verify OTP</h3>
+            </div>
+            <div class="card-body">
+                <p class="mb-4">Please enter the OTP sent to your email address.</p>
+                <form method="post" action="{{ url_for('verify_otp') }}">
+                    <div class="mb-3">
+                        <label for="otp" class="form-label">OTP</label>
+                        <input type="text" class="form-control" id="otp" name="otp" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verify OTP</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

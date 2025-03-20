@@ -1,0 +1,21 @@
+question,option,answer,category,subcategory
+What is the correct file extension for Python files?,".py, .python, .pyt, .pt",A,PL,python
+Which function is used to output text in Python?,"print(), write(), output(), echo()",A,PL,python
+How do you create a list in Python?,"list = {1, 2, 3}, list = [1, 2, 3], list = (1, 2, 3), list = <1, 2, 3>",B,PL,python
+"What is the output of len([1, 2, 3])?","2, 3, 4, Error",B,PL,python
+How do you create a variable in Python?,"x = 10, int x = 10, let x = 10, x := 10",A,PL,python
+Which of the following is a tuple?,"[1, 2, 3], {1, 2, 3}, (1, 2, 3), <1, 2, 3>",C,PL,python
+What is the result of 2 + 3 * 4?,"20, 14, 24, 18",B,PL,python
+How do you start a function in Python?,"function myFunc(), def myFunc():, create myFunc(), func myFunc():",B,PL,python
+Which of the following is used to define a block of code?,"Curly braces {}, Indentation, Parentheses (), Square brackets []",B,PL,python
+What is the data type of True in Python?,"int, bool, str, float",B,PL,python
+How do you add an element to the end of a list?,"list.append(x), list.add(x), list.insert(x), list.push(x)",A,PL,python
+How do you remove an element by value from a list?,"list.pop(x), list.remove(x), del list[x], list.clear(x)",B,PL,python
+Which operator is used for exponentiation in Python?,"^, **, *, %",B,PL,python
+How do you check the data type of a variable x?,"typeof(x), type(x), isType(x), getType(x)",B,PL,python
+What is the output of print(4 // 2)?,"2.0, 2, 4, Error",B,PL,python
+Which method is used to combine two lists?,"list1 + list2, list1.extend(list2), Both A and B, list1.append(list2)",C,PL,python
+Which of the following is not a valid Python keyword?,"class, def, function, return",C,PL,python
+How do you import a module in Python?,"import module_name, include module_name, require module_name, using module_name",A,PL,python
+What is the output of print('Hello'[1])?,"H, e, l, o",B,PL,python
+How do you check if a value exists in a list?,"value in list, value includes list, list.contains(value), value has list",A,PL,python

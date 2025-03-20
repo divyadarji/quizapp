@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card quiz-card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Student Dashboard</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4>Welcome, {{ session['student_name'] }}!</h4>
+                        <p class="mb-0"><strong>Roll Number:</strong> {{ student[1] }}</p>
+                        <p class="mb-0"><strong>Class:</strong> {{ student[3] }} - {{ student[4] }}</p>
+                        <p class="mb-0"><strong>School:</strong> {{ student[2] }}</p>
+                        <p class="mb-1"><strong>Email:</strong> {{ student[6] }}</p>
+                        <div class="mt-4">
+                            <a href="{{ url_for('quiz_categories') }}" class="btn btn-primary">Take New Quiz</a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Your Statistics</h5>
+                                {% set total_quizzes = results|length %}
+                                {% set correct_answers = namespace(value=0) %}
+                                {% set total_attempts = namespace(value=0) %}
+                                
+                                {% for result in results %}
+                                    {% set correct_answers.value = correct_answers.value + result[8] %}
+                                    {% set total_attempts.value = total_attempts.value + result[7] %}
+                                {% endfor %}
+                                
+                                {% if total_quizzes > 0 %}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="result-score">{{ total_quizzes }}</div>
+                                            <p>Quizzes Taken</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="result-score">
+                                                {% if total_attempts.value > 0 %}
+                                                    {{ ((correct_answers.value / total_attempts.value) * 100)|round|int }}%
+                                                {% else %}
+                                                    0%
+                                                {% endif %}
+                                            </div>
+                                            <p>Accuracy</p>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="result-score">{{ correct_answers.value }}</div>
+                                            <p>Correct Answers</p>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <p class="lead mt-3">You haven't taken any quizzes yet.</p>
+                                    <a href="{{ url_for('quiz_categories') }}" class="btn btn-outline-primary">Start Your First Quiz</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% if results|length > 0 %}
+            <div class="card quiz-card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="card-title mb-0">Quiz History</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Subcategory</th>
+                                    <th>Attempted</th>
+                                    <th>Correct</th>
+                                    <th>Wrong</th>
+                                    <th>Score (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for result in results %}
+                                <tr>
+                                    <td>
+                                        {% if result[5] == 'GK' %}
+                                            General Knowledge
+                                        {% elif result[5] == 'PL' %}
+                                            Programming Languages
+                                        {% elif result[5] == 'GL' %}
+                                            General Languages
+                                        {% else %}
+                                            {{ result[5] }}
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if result[6] == 'gk' %}
+                                            General Knowledge
+                                        {% elif result[6] == 'c-language' %}
+                                            C Language
+                                        {% elif result[6] == 'c++' %}
+                                            C++
+                                        {% elif result[6] == 'java' %}
+                                            Java
+                                        {% elif result[6] == 'python' %}
+                                            Python
+                                        {% elif result[6] == 'eng' %}
+                                            English
+                                        {% elif result[6] == 'hindi' %}
+                                            Hindi
+                                        {% elif result[6] == 'guj' %}
+                                            Gujarati
+                                        {% else %}
+                                            {{ result[6] }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ result[7] }}</td>
+                                    <td>{{ result[8] }}</td>
+                                    <td>{{ result[9] }}</td>
+                                    <td>
+                                        {% if result[7] > 0 %}
+                                            {{ ((result[8] / result[7]) * 100)|round|int }}%
+                                        {% else %}
+                                            0%
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

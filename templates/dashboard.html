@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card quiz-card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Admin Dashboard</h3>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-4">Welcome, {{ username }}!</h4>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Manage Students</h5>
+                                <p class="card-text">View and manage student accounts, track progress, and review quiz results.</p>
+                                <a href="#" class="btn btn-primary">Manage Students</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Manage Questions</h5>
+                                <p class="card-text">Create, edit, and organize quiz questions and categories.</p>
+                                <a href="#" class="btn btn-primary">Manage Questions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Reports</h5>
+                                <p class="card-text">Generate and view performance reports and analytics.</p>
+                                <a href="#" class="btn btn-primary">View Reports</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4 class="mt-4 mb-3">Recent Activity</h4>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Class</th>
+                                <th>Quiz Category</th>
+                                <th>Score</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Sample Student</td>
+                                <td>10-A</td>
+                                <td>Programming - Python</td>
+                                <td>85%</td>
+                                <td>Today</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>Sample Student 2</td>
+                                <td>9-B</td>
+                                <td>General Knowledge</td>
+                                <td>70%</td>
+                                <td>Yesterday</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>Sample Student 3</td>
+                                <td>11-C</td>
+                                <td>Languages - English</td>
+                                <td>90%</td>
+                                <td>3 days ago</td>
+                                <td><a href="#" class="btn btn-sm btn-outline-primary">View Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <a href="#" class="btn btn-outline-primary">View All Activity</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

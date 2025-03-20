@@ -1,0 +1,21 @@
+question,options,answer,category,subcategory
+What is the default value of a boolean variable in Java?,"true, false, null, 0",B,PL,java
+Which of the following is not a valid Java identifier?,"myVariable, variable_1, 1variable, my_var",C,PL,java
+Which keyword is used to define a class in Java?,"define, class, new, public",B,PL,java
+Which operator is used for object comparison in Java?,"==, equals(), compareTo(), ===",B,PL,java
+Which method is used to find the length of a string in Java?,"length(), getSize(), size(), getLength()",A,PL,java
+Which method is used to start a thread in Java?,"run(), execute(), start(), init()",C,PL,java
+Which of the following is a valid data type in Java?,"int, double, boolean, All of the above",D,PL,java
+Which method is used to read input from the user in Java?,"readInput(), nextLine(), input(), read()",B,PL,java
+Which exception is thrown when dividing by zero in Java?,"ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, NumberFormatException",A,PL,java
+"In Java, which data type can be used to store a single character?","int, boolean, char, String",C,PL,java
+What is the size of the char data type in Java?,"1 byte, 2 bytes, 4 bytes, 8 bytes",B,PL,java
+Which method is used to remove the last element from an ArrayList?,"remove(), delete(), removeLast(), pop()",A,PL,java
+Which access modifier allows the widest visibility in Java?,"public, private, protected, default",A,PL,java
+What is the result of 10 / 3 in Java?,"3.0, 3, 3.33, 4",B,PL,java
+Which of the following is a valid comment in Java?,"// This is a comment, /* This is a comment */, Both A and B, None of the above",C,PL,java
+What happens if we compile this code: String s = null; s.length()?,"It will print 0, It will throw an exception, It will compile successfully, It will print an empty string",B,PL,java
+Which method is used to get the class name in Java?,"getClassName(), getClass(), className(), toString()",B,PL,java
+Which of these is not a primitive data type in Java?,"int, boolean, String, char",C,PL,java
+Which statement is used to terminate the current loop in Java?,"stop, break, exit, continue",B,PL,java
+Which collection implements a key-value pair structure in Java?,"ArrayList, HashMap, HashSet, TreeSet",B,PL,java

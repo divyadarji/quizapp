@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - {{ category|upper }} Subcategories{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card quiz-card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">
+                    {% if category == 'gk' %}
+                        General Knowledge
+                    {% elif category == 'pl' %}
+                        Programming Languages
+                    {% elif category == 'gl' %}
+                        General Languages
+                    {% endif %}
+                    - Select Subcategory
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for subcategory in subcategories %}
+                    <div class="col-md-4 mb-4">
+                        <a href="{{ url_for('start_quiz', category=category, subcategory=subcategory.id) }}" class="text-decoration-none">
+                            <div class="card category-card h-100">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title">{{ subcategory.name }}</h4>
+                                    <p class="card-text">
+                                        {% if subcategory.id == 'gk' %}
+                                            Test your general knowledge with various questions.
+                                        {% elif subcategory.id == 'c-language' %}
+                                            Challenge yourself with C programming language questions.
+                                        {% elif subcategory.id == 'c++' %}
+                                            Test your C++ programming skills.
+                                        {% elif subcategory.id == 'java' %}
+                                            Java programming questions to test your knowledge.
+                                        {% elif subcategory.id == 'python' %}
+                                            Python programming challenges for all skill levels.
+                                        {% elif subcategory.id == 'eng' %}
+                                            Test your English language skills.
+                                        {% elif subcategory.id == 'hindi' %}
+                                            Questions to assess your Hindi language knowledge.
+                                        {% elif subcategory.id == 'guj' %}
+                                            Test your Gujarati language skills.
+                                        {% endif %}
+                                    </p>
+                                    <div class="mt-3">
+                                        <span class="badge bg-primary">10 Questions</span>
+                                        <span class="badge bg-secondary">5 Minutes</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent text-center">
+                                    <button class="btn btn-outline-primary">Start Quiz</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="text-center mt-3">
+                    <a href="{{ url_for('quiz_categories') }}" class="btn btn-secondary">Back to Categories</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

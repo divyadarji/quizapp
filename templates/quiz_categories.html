@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - Quiz Categories{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card quiz-card">
+            <div class="card-header bg-primary text-white">
+                <h3 class="card-title mb-0">Select Quiz Category</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <a href="{{ url_for('quiz_subcategories', category='gk') }}" class="text-decoration-none">
+                            <div class="card category-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="https://via.placeholder.com/80" alt="General Knowledge" class="mb-3">
+                                    <h4 class="card-title">General Knowledge</h4>
+                                    <p class="card-text">Test your general knowledge with a variety of questions.</p>
+                                    <div class="mt-3">
+                                        <span class="badge bg-primary">10 Questions</span>
+                                        <span class="badge bg-secondary">5 Minutes</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent text-center">
+                                    <button class="btn btn-outline-primary">Select</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <a href="{{ url_for('quiz_subcategories', category='pl') }}" class="text-decoration-none">
+                            <div class="card category-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="https://via.placeholder.com/80" alt="Programming Languages" class="mb-3">
+                                    <h4 class="card-title">Programming Languages</h4>
+                                    <p class="card-text">Challenge yourself with programming questions in various languages.</p>
+                                    <div class="mt-3">
+                                        <span class="badge bg-primary">10 Questions</span>
+                                        <span class="badge bg-secondary">5 Minutes</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent text-center">
+                                    <button class="btn btn-outline-primary">Select</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <a href="{{ url_for('quiz_subcategories', category='gl') }}" class="text-decoration-none">
+                            <div class="card category-card h-100">
+                                <div class="card-body text-center">
+                                    <img src="https://via.placeholder.com/80" alt="General Languages" class="mb-3">
+                                    <h4 class="card-title">General Languages</h4>
+                                    <p class="card-text">Test your language skills in English, Hindi, and Gujarati.</p>
+                                    <div class="mt-3">
+                                        <span class="badge bg-primary">10 Questions</span>
+                                        <span class="badge bg-secondary">5 Minutes</span>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-transparent text-center">
+                                    <button class="btn btn-outline-primary">Select</button>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Quiz Application - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <div class="card quiz-card">
+            <div class="card-body text-center">
+                <h1 class="card-title mb-4">Welcome to the Quiz Application</h1>
+                <p class="lead">Test your knowledge with our wide range of quizzes!</p>
+                
+                <div class="row mt-5">
+                    <div class="col-md-4">
+                        <div class="card mb-4 category-card">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">General Knowledge</h3>
+                                <p class="card-text">Test your general knowledge with our curated questions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 category-card">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">Programming</h3>
+                                <p class="card-text">Challenge yourself with programming questions in various languages.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4 category-card">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">Languages</h3>
+                                <p class="card-text">Test your language skills in English, Hindi, and Gujarati.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-5">
+                    {% if 'student_id' in session %}
+                        <a href="{{ url_for('quiz_categories') }}" class="btn btn-primary btn-lg">Start Quiz</a>
+                    {% elif 'user_id' in session %}
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+                    {% else %}
+                        <a href="{{ url_for('student_login') }}" class="btn btn-primary btn-lg me-2">Student Login</a>
+                        <a href="{{ url_for('student_signup') }}" class="btn btn-outline-primary btn-lg">Student Sign Up</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
