@@ -290,53 +290,44 @@ def start_quiz(category, subcategory):
     
     # Select 10 random questions or all available if less than 10
     selected_questions = random.sample(all_questions, min(10, len(all_questions)))
-    
-    # Store questions in session with a completely different approach
     processed_questions = []
     
     for i, q in enumerate(selected_questions):
-        # Get raw data from database record
         question_text = q[0] if q[0] else "No question text"
         options_text = q[1] if q[1] else ""
         correct_answer_text = q[2] if q[2] else ""
         
-        # Process options list
+        # Split options that are stored as comma-separated values
         options = [opt.strip() for opt in options_text.split(',')]
         
-        # Instead of text comparison, store the correct answer as an index (0-based)
+        # Determine the correct option index by mapping the letter to its index
         correct_index = None
-        
-        # First try exact matching
-        for idx, option in enumerate(options):
-            if option == correct_answer_text:
-                correct_index = idx
-                break
-        
-        # If exact matching failed, try normalized comparison
-        if correct_index is None:
+        if correct_answer_text.strip().upper() in ['A', 'B', 'C', 'D']:
+            correct_index = ord(correct_answer_text.strip().upper()) - ord('A')
+        else:
+            # Fallback: try matching option text (less preferred)
             for idx, option in enumerate(options):
                 if option.lower().strip() == correct_answer_text.lower().strip():
                     correct_index = idx
                     break
         
-        # If still no match, set a default (first option)
-        if correct_index is None:
+        if correct_index is None or correct_index >= len(options):
+            # Default to the first option if mapping fails (and log a warning)
             correct_index = 0
-            print(f"WARNING: Could not find '{correct_answer_text}' in options - using first option as default")
+            print(f"WARNING: Could not properly map '{correct_answer_text}' to an option - using default first option")
         
-        # Store processed question
         processed_questions.append({
             'id': i,
             'question': question_text,
             'options': options,
-            'correct_index': correct_index,  # Store as index instead of text
-            'answer': correct_answer_text    # Keep original for display purposes
+            'correct_index': correct_index,  # Stored as index
+            'answer': correct_answer_text    # Original answer (for display if needed)
         })
         
-        # Debug output
+        # Debug output (optional)
         debug_quiz_data(processed_questions[-1])
     
-    # Store processed questions in session
+    # Store the processed quiz data in session for further use
     session['quiz_questions'] = processed_questions
     session['quiz_category'] = category
     session['quiz_subcategory'] = subcategory
