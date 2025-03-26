@@ -1,4 +1,3 @@
-# app.py
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import mysql.connector
 import random
@@ -206,13 +205,13 @@ def student_dashboard():
     results = []
     for result in results_raw:
         processed_result = list(result)
-        # Convert string values to integers for columns 7, 8, and 9
         processed_result[7] = int(processed_result[7]) if processed_result[7] else 0
         processed_result[8] = int(processed_result[8]) if processed_result[8] else 0
         processed_result[9] = int(processed_result[9]) if processed_result[9] else 0
         results.append(processed_result)
     
     return render_template('student_dashboard.html', student=student, results=results)
+
 # Quiz routes
 @app.route('/quiz-categories')
 def quiz_categories():
@@ -248,7 +247,6 @@ def quiz_subcategories(category):
     
     return render_template('quiz_subcategories.html', category=category, subcategories=subcategories)
 
-# Add this helper function at the top level of your app.py file
 def debug_quiz_data(question_data, user_answer=None):
     """Helper function to debug quiz question data"""
     print("\n==== QUIZ DATA DEBUG ====")
@@ -260,8 +258,6 @@ def debug_quiz_data(question_data, user_answer=None):
     if user_answer:
         print(f"User provided answer: '{user_answer}'")
     print("========================\n")
-
-# Replace both start_quiz and quiz_question functions
 
 @app.route('/start-quiz/<category>/<subcategory>')
 def start_quiz(category, subcategory):
@@ -293,14 +289,15 @@ def start_quiz(category, subcategory):
     processed_questions = []
     
     for i, q in enumerate(selected_questions):
+        # q[0]: question text, q[1]: options (comma-separated), q[2]: answer letter (A, B, C, D)
         question_text = q[0] if q[0] else "No question text"
         options_text = q[1] if q[1] else ""
         correct_answer_text = q[2] if q[2] else ""
         
-        # Split options that are stored as comma-separated values
+        # Split options stored as comma-separated values
         options = [opt.strip() for opt in options_text.split(',')]
         
-        # Determine the correct option index by mapping the letter to its index
+        # Determine the correct option index by mapping the answer letter to an index
         correct_index = None
         if correct_answer_text.strip().upper() in ['A', 'B', 'C', 'D']:
             correct_index = ord(correct_answer_text.strip().upper()) - ord('A')
@@ -320,14 +317,13 @@ def start_quiz(category, subcategory):
             'id': i,
             'question': question_text,
             'options': options,
-            'correct_index': correct_index,  # Stored as index
-            'answer': correct_answer_text    # Original answer (for display if needed)
+            'correct_index': correct_index,  # Correct option stored as index
+            'answer': correct_answer_text    # Original answer letter (for display if needed)
         })
         
-        # Debug output (optional)
         debug_quiz_data(processed_questions[-1])
     
-    # Store the processed quiz data in session for further use
+    # Store quiz data in session
     session['quiz_questions'] = processed_questions
     session['quiz_category'] = category
     session['quiz_subcategory'] = subcategory
@@ -354,19 +350,17 @@ def quiz_question():
     question = questions[current_index]
     
     if request.method == 'POST':
-        # Get user's answer - expecting the index of the selected option
         user_answer_index = -1
         try:
-            # Get the option that the user selected
             user_answer = request.form.get('answer', '')
             
-            # Find which index this answer corresponds to
+            # Find the index corresponding to the user's selected option
             for i, option in enumerate(question['options']):
                 if option == user_answer:
                     user_answer_index = i
                     break
-                    
-            # If not found, try normalized comparison
+            
+            # If exact match is not found, try normalized comparison
             if user_answer_index == -1:
                 for i, option in enumerate(question['options']):
                     if option.lower().strip() == user_answer.lower().strip():
@@ -376,7 +370,6 @@ def quiz_question():
             print(f"Error processing user answer: {str(e)}")
             user_answer_index = -1
         
-        # Debug output
         print("\n==== ANSWER COMPARISON ====")
         print(f"User selected option text: '{user_answer}'")
         print(f"User selected option index: {user_answer_index}")
@@ -384,7 +377,6 @@ def quiz_question():
         print(f"Correct option text: '{question['options'][question['correct_index']] if question['correct_index'] < len(question['options']) else 'INVALID'}'")
         print("==========================\n")
         
-        # Compare by index
         if user_answer_index == question['correct_index']:
             session['correct_answers'] += 1
             flash('Correct answer!', 'success')
@@ -401,18 +393,17 @@ def quiz_question():
         return redirect(url_for('quiz_question'))
     
     return render_template('quiz_question.html', question=question, question_num=current_index+1, total_questions=len(questions))
+
 @app.route('/quiz-result')
 def quiz_result():
     if 'student_id' not in session or 'quiz_questions' not in session:
         flash('Please start a quiz first', 'danger')
         return redirect(url_for('quiz_categories'))
     
-    # Get quiz results
     correct_answers = session['correct_answers']
     total_questions = len(session['quiz_questions'])
     attempted_questions = session['attempted_questions']
     
-    # Save results to database
     conn, cursor = get_db_connection()
     cursor.execute(
         "INSERT INTO evaluation (name, std, division, rollno, category, subcategory, noofattempt, rightans, wrongans) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)",
@@ -431,7 +422,6 @@ def quiz_result():
     conn.commit()
     conn.close()
     
-    # Clear quiz session data
     quiz_data = {
         'questions': session['quiz_questions'],
         'category': session['quiz_category'],
@@ -450,13 +440,12 @@ def quiz_result():
     session.pop('attempted_questions', None)
     
     return render_template('quiz_result.html', 
-                          correct=correct_answers, 
-                          total=total_questions, 
-                          attempted=attempted_questions,
-                          category=quiz_data['category'],
-                          subcategory=quiz_data['subcategory'])
+                           correct=correct_answers, 
+                           total=total_questions, 
+                           attempted=attempted_questions,
+                           category=quiz_data['category'],
+                           subcategory=quiz_data['subcategory'])
 
-# Dashboard routes
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
